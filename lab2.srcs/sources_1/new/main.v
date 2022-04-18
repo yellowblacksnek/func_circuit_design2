@@ -1,0 +1,128 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 05.04.2022 20:28:44
+// Design Name: 
+// Module Name: main
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module main(
+    input clk_i ,
+    input rst_i ,
+    input [ 7 : 0 ] a_bi ,
+    input [ 7 : 0 ] b_bi ,
+    input start_i ,
+    output busy_o ,
+    output reg [ 4 : 0 ] y_bo
+);
+    reg [1:0] state;
+    
+    localparam IDLE = 2'b00 ;
+    localparam WORK = 2'b01 ;
+    localparam WAIT_ADD = 2'b10 ;
+    localparam READY = 2'b11;
+    
+    assign busy_o = (state != IDLE);
+    
+//    reg [1:0] n;
+    
+    wire [1:0] addsub_req;
+    
+    wire [7:0] addsub_res;
+    reg [1:0] addsub_addr;
+    wire [16:0] addsub_i0;
+    wire [16:0] addsub_i1;
+    wire [16:0] addsub_i2;
+    addsub addsub_inst(
+        .i0(addsub_i0),
+        .i1(addsub_i1),
+        .i2(addsub_i2),
+        .addr(addsub_addr),
+        .out(addsub_res));
+
+    wire [2:0] cbrt_a;
+    wire cbrt_busy;
+    cubic cubic_inst(
+        .clk_i(clk_i),
+        .rst_i(rst_i),
+        .x_bi(a_bi), 
+        .start_i(start_i),
+        .busy_o(cbrt_busy),
+        .y_bo(cbrt_a),
+        
+        .addsub_ready(addsub_addr == 2'b01),
+        .addsub_res(addsub_res),
+        .addsub_req(addsub_req[0]),
+        .addsub_mode(addsub_i1[16]),
+        .addsub_a(addsub_i1[15:8]),
+        .addsub_b(addsub_i1[7:0]));
+        
+    wire [3:0] sqrt_b;
+    wire sqrt_busy;
+    sqrt sqrt_inst(
+        .clk_i(clk_i),
+        .rst_i(rst_i),
+        .x_bi(b_bi), 
+        .start_i(start_i),
+        .busy_o(sqrt_busy),
+        .y_bo(sqrt_b),
+        
+        .addsub_ready(addsub_addr == 2'b10),
+        .addsub_res(addsub_res),
+        .addsub_req(addsub_req[1]),
+        .addsub_mode(addsub_i2[16]),
+        .addsub_a(addsub_i2[15:8]),
+        .addsub_b(addsub_i2[7:0]));  
+        
+    assign addsub_i0[16] = 1;
+    assign addsub_i0[15:8] = cbrt_a;
+    assign addsub_i0[7:0] = sqrt_b;
+    
+    always @(posedge clk_i)
+        if (rst_i) begin
+            y_bo <= 0;
+            state <= IDLE;
+        end else begin
+            case (state)
+                IDLE:
+                    if(start_i) begin
+                        state <= WORK;
+                    end
+                WORK:
+                    if(sqrt_busy == 0 && cbrt_busy == 0) begin
+                        addsub_addr <= 2'b00;
+                        state <= WAIT_ADD;
+//                        y_bo <= cbrt_a + sqrt_b;
+                    end else begin
+                        if(addsub_req[0]) begin
+                            addsub_addr <= 2'b01;
+                        end else if(addsub_req[1]) begin
+                            addsub_addr <= 2'b10;
+                        end
+                    end
+                WAIT_ADD:
+                    begin
+                        y_bo <= addsub_res;
+                        state <= READY;
+                    end
+                READY:
+                    begin
+                        state <= IDLE;
+                    end
+            endcase
+        end
+endmodule

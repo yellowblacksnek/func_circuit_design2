@@ -1,0 +1,10 @@
+Vivado Simulator 2019.1
+Time resolution is 1 ps
+good! x:   0 y: 0 exp:  0
+good! x:   1 y: 1 exp:  1
+good! x:   8 y: 2 exp:  2
+good! x:  27 y: 3 exp:  3
+good! x:  64 y: 4 exp:  4
+good! x: 125 y: 5 exp:  5
+good! x: 216 y: 6 exp:  6
+$stop called at time : 6580 ns : File "C:/Users/truem/lab2/lab2.srcs/sim_2/new/cbrt_tb.v" Line 88
