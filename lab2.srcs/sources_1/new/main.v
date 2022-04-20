@@ -28,7 +28,15 @@ module main(
     input start_i ,
     output busy_o ,
     output reg [ 4 : 0 ] y_bo
+    
+//    output [3:0] addsub_req,
+//    output [3:0] addsub_ready,
+//    output [1:0] addsub_addr
+
 );
+
+//    assign addsub_req[3] = 0;
+    
     reg [1:0] state;
     
     localparam IDLE = 2'b00 ;
@@ -40,10 +48,11 @@ module main(
     
 //    reg [1:0] n;
     
-    wire [1:0] addsub_req;
-    
+    wire [3:0] addsub_req;
+    wire [3:0] addsub_ready;
+    wire [1:0] addsub_addr;
+
     wire [7:0] addsub_res;
-    reg [1:0] addsub_addr;
     wire [16:0] addsub_i0;
     wire [16:0] addsub_i1;
     wire [16:0] addsub_i2;
@@ -53,6 +62,14 @@ module main(
         .i2(addsub_i2),
         .addr(addsub_addr),
         .out(addsub_res));
+        
+    ec4_2 ec(
+        .d(addsub_req),
+        .out(addsub_addr));
+        
+    dc2_4 dc(
+        .i(addsub_addr),
+        .out(addsub_ready));
 
     wire [2:0] cbrt_a;
     wire cbrt_busy;
@@ -64,9 +81,9 @@ module main(
         .busy_o(cbrt_busy),
         .y_bo(cbrt_a),
         
-        .addsub_ready(addsub_addr == 2'b01),
+        .addsub_ready(addsub_ready[1]),
         .addsub_res(addsub_res),
-        .addsub_req(addsub_req[0]),
+        .addsub_req(addsub_req[1]),
         .addsub_mode(addsub_i1[16]),
         .addsub_a(addsub_i1[15:8]),
         .addsub_b(addsub_i1[7:0]));
@@ -81,13 +98,15 @@ module main(
         .busy_o(sqrt_busy),
         .y_bo(sqrt_b),
         
-        .addsub_ready(addsub_addr == 2'b10),
+        .addsub_ready(addsub_ready[2]),
         .addsub_res(addsub_res),
-        .addsub_req(addsub_req[1]),
+        .addsub_req(addsub_req[2]),
         .addsub_mode(addsub_i2[16]),
         .addsub_a(addsub_i2[15:8]),
         .addsub_b(addsub_i2[7:0]));  
         
+    assign addsub_req[0] = sqrt_busy == 0 && cbrt_busy == 0;
+    assign addsub_req[3] = 0;
     assign addsub_i0[16] = 1;
     assign addsub_i0[15:8] = cbrt_a;
     assign addsub_i0[7:0] = sqrt_b;
@@ -103,17 +122,20 @@ module main(
                         state <= WORK;
                     end
                 WORK:
-                    if(sqrt_busy == 0 && cbrt_busy == 0) begin
-                        addsub_addr <= 2'b00;
+                    if(addsub_ready[0] && addsub_req[0]) begin // && addsub_req[0]
                         state <= WAIT_ADD;
-//                        y_bo <= cbrt_a + sqrt_b;
-                    end else begin
-                        if(addsub_req[0]) begin
-                            addsub_addr <= 2'b01;
-                        end else if(addsub_req[1]) begin
-                            addsub_addr <= 2'b10;
-                        end
                     end
+//                    if(sqrt_busy == 0 && cbrt_busy == 0) begin
+//                        addsub_addr <= 2'b00;
+//                        state <= WAIT_ADD;
+////                        y_bo <= cbrt_a + sqrt_b;
+//                    end else begin
+//                        if(addsub_req[0]) begin
+//                            addsub_addr <= 2'b01;
+//                        end else if(addsub_req[1]) begin
+//                            addsub_addr <= 2'b10;
+//                        end
+//                    end
                 WAIT_ADD:
                     begin
                         y_bo <= addsub_res;

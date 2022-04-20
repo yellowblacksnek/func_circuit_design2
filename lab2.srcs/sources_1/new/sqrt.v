@@ -50,7 +50,7 @@ module sqrt(
     wire [2:0] end_step;
     wire [7:0] b;
     
-    assign end_step = ( m == 1'b0 ) ;
+    assign end_step = ( m == 8'b00000000 ) ;
     assign busy_o = (state != IDLE);
     assign addsub_req = (state == WAIT_SUB);
     
@@ -61,7 +61,7 @@ module sqrt(
 
     always @(posedge clk_i)
         if (rst_i) begin
-            m <= 1 << N - 2;
+            m <= 1 << (N - 2);
             y <= 0;
             y_bo <= 0;
             
@@ -81,28 +81,28 @@ module sqrt(
                         if(end_step) begin
                             state <= READY;
                             y_bo <= y[3:0];
+                        end else begin 
+                            if(x >= b) begin
+    //                            x <= (x - b);
+    
+                                addsub_mode <= 0;
+                                addsub_a <= x;
+                                addsub_b <= b;
+                                state <= WAIT_SUB;
+                                
+                                y <= ((y >> 1) | m);
+                            end else begin
+                                y <= (y >> 1);
+                            end
+                            m <= m >> 2;
+    //                        if(x >= b) begin
+    //                            x <= (x - b);
+    //                            y <= (y >> 1) | m;
+    //                        end else begin
+    //                            y <= (y >> 1);
+    //                        end
+    //                        m <= m >> 2;
                         end
-                        
-                        if(x >= b) begin
-//                            x <= (x - b);
-
-                            addsub_mode <= 0;
-                            addsub_a <= x;
-                            addsub_b <= b;
-                            state <= WAIT_SUB;
-                            
-                            y <= (y >> 1) | m;
-                        end else begin
-                            y <= (y >> 1);
-                        end
-                        m <= m >> 2;
-//                        if(x >= b) begin
-//                            x <= (x - b);
-//                            y <= (y >> 1) | m;
-//                        end else begin
-//                            y <= (y >> 1);
-//                        end
-//                        m <= m >> 2;
                     end
                 WAIT_SUB:
                     if(addsub_ready == 1) begin

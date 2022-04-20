@@ -49,6 +49,7 @@ module mult_tb;
         #10 start_tb = 1'b0;
     end endtask
 
+    reg [8:0] regg;
     reg [7:0] i;
     reg [4:0] exp;
     wire [4:0] y;
@@ -89,6 +90,22 @@ module mult_tb;
             end
         end
         
+        for(regg = 0; regg < 256; regg = regg+1) begin            
+            a_tb <= 0;
+            b_tb <= regg;
+            exp = 0;
+            reset;
+            #50;
+            while(busy_tb != 0) begin
+                #50;     
+            end
+            if(y == exp) begin
+                $display("good! a: %d b: %d y: %d exp: %d", a_tb, b_tb, y, exp);
+            end else begin
+                $display("bad! a: %d b: %d y: %d exp: %d", a_tb, b_tb, y, exp);
+            end
+        end
+        
         $stop;
     end
     
@@ -109,6 +126,16 @@ module mult_tb;
 //        .busy_o(busy_tb),
 //        .y_bo(y_tb));  
     
+//    wire [3:0] addsub_req;
+//    wire [3:0] addsub_ready;
+//    wire [1:0] addsub_addr;
+
+//    wire addsub_ready0 = addsub_ready[0];
+//    wire addsub_ready1 = addsub_ready[1];
+//    wire addsub_ready2 = addsub_ready[2];
+//    wire addsub_ready3 = addsub_ready[3];
+
+    
     main main_inst(
         .clk_i(clk_tb),
         .rst_i(rst_tb),
@@ -116,6 +143,9 @@ module mult_tb;
         .b_bi(b_tb), 
         .start_i(start_tb),
         .busy_o(busy_tb),
-        .y_bo(y));    
+        .y_bo(y));
+//        .addsub_req(addsub_req),
+//        .addsub_ready(addsub_ready),
+//        .addsub_addr(addsub_addr));    
 
 endmodule
