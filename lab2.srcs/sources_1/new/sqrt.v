@@ -35,29 +35,26 @@ module sqrt(
     output reg [7:0] addsub_b
     );
     
-    localparam IDLE = 3'b000;
-    localparam WORK = 3'b001;
-    localparam WAIT_SUB = 3'b010;
-    localparam READY = 3'b100;
+    localparam IDLE = 2'b00;
+    localparam WORK = 2'b01;
+    localparam WAIT_SUB = 2'b10;
+    localparam READY = 2'b11;
     
     localparam N = 4'h8;
     
     reg [7:0] x;
     reg [7:0] m;
     reg [7:0] y;
-    reg [2:0] state;
+    reg [1:0] state;
     
-    wire [2:0] end_step;
+    wire end_step;
     wire [7:0] b;
     
-    assign end_step = ( m == 8'b00000000 ) ;
+    assign end_step = ( m == 0 ) ;
     assign busy_o = (state != IDLE);
     assign addsub_req = (state == WAIT_SUB);
     
     assign b = y | m;
-//    assign shifted_y = y >> 1;
-//    assign shifted_m = m >> 2;
-
 
     always @(posedge clk_i)
         if (rst_i) begin
@@ -77,14 +74,12 @@ module sqrt(
                     end
                 WORK:
                     begin
-//                        y_bo <= y;
                         if(end_step) begin
                             state <= READY;
                             y_bo <= y[3:0];
                         end else begin 
                             if(x >= b) begin
     //                            x <= (x - b);
-    
                                 addsub_mode <= 0;
                                 addsub_a <= x;
                                 addsub_b <= b;
@@ -95,13 +90,6 @@ module sqrt(
                                 y <= (y >> 1);
                             end
                             m <= m >> 2;
-    //                        if(x >= b) begin
-    //                            x <= (x - b);
-    //                            y <= (y >> 1) | m;
-    //                        end else begin
-    //                            y <= (y >> 1);
-    //                        end
-    //                        m <= m >> 2;
                         end
                     end
                 WAIT_SUB:

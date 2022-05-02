@@ -90,21 +90,21 @@ module mult_tb;
             end
         end
         
-        for(regg = 0; regg < 256; regg = regg+1) begin            
-            a_tb <= 0;
-            b_tb <= regg;
-            exp = 0;
-            reset;
-            #50;
-            while(busy_tb != 0) begin
-                #50;     
-            end
-            if(y == exp) begin
-                $display("good! a: %d b: %d y: %d exp: %d", a_tb, b_tb, y, exp);
-            end else begin
-                $display("bad! a: %d b: %d y: %d exp: %d", a_tb, b_tb, y, exp);
-            end
-        end
+//        for(regg = 0; regg < 256; regg = regg+1) begin            
+//            a_tb <= 0;
+//            b_tb <= regg;
+//            exp = 0;
+//            reset;
+//            #50;
+//            while(busy_tb != 0) begin
+//                #50;     
+//            end
+//            if(y == exp) begin
+//                $display("good! a: %d b: %d y: %d exp: %d", a_tb, b_tb, y, exp);
+//            end else begin
+//                $display("bad! a: %d b: %d y: %d exp: %d", a_tb, b_tb, y, exp);
+//            end
+//        end
         
         $stop;
     end
