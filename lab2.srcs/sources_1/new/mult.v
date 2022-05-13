@@ -72,8 +72,9 @@ module mult(
                             y_bo <= part_res;
                         end
                         
-                        part_res <= part_res + shifted_part_sum;
-                        ctr <= ctr + 1;
+                            part_res <= part_res + shifted_part_sum;
+                            ctr <= ctr + 1;
+                        
                     end
                 READY:
                     begin

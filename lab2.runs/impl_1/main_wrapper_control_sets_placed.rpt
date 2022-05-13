@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Wed Apr 20 11:12:25 2022
+| Date         : Wed May  4 22:05:56 2022
 | Host         : DESKTOP-V5IKRQL running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file main_wrapper_control_sets_placed.rpt
 | Design       : main_wrapper
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    16 |
-|    Minimum number of control sets                        |    16 |
+| Total control sets                                       |    15 |
+|    Minimum number of control sets                        |    15 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    46 |
+| Unused register locations in slices containing registers |    41 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,11 +39,11 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    16 |
-| >= 0 to < 4        |     1 |
+| Total control sets |    15 |
+| >= 0 to < 4        |     0 |
 | >= 4 to < 6        |     3 |
-| >= 6 to < 8        |     3 |
-| >= 8 to < 10       |     5 |
+| >= 6 to < 8        |     4 |
+| >= 8 to < 10       |     4 |
 | >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     1 |
@@ -58,37 +58,36 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              18 |            9 |
+| No           | No                    | No                     |               8 |            4 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               9 |            3 |
-| Yes          | No                    | No                     |              55 |           14 |
+| No           | Yes                   | No                     |               9 |            4 |
+| Yes          | No                    | No                     |              62 |           20 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              48 |           16 |
+| Yes          | Yes                   | No                     |              48 |           14 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------------+------------------------------------------------+---------------------------------------+------------------+----------------+
-|        Clock Signal        |                  Enable Signal                 |            Set/Reset Signal           | Slice Load Count | Bel Load Count |
-+----------------------------+------------------------------------------------+---------------------------------------+------------------+----------------+
-|  main_inst/cubic_inst/E[0] |                                                |                                       |                2 |              2 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/ec/FSM_onehot_state_reg[1][0]        | LED_OBUF[13]                          |                1 |              4 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/sqrt_inst/y_bo[3]_i_1_n_0            | LED_OBUF[13]                          |                1 |              4 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/FSM_onehot_state_reg_n_0_[2]         | LED_OBUF[13]                          |                2 |              5 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/cubic_inst/mult_inst/b[7]_i_1_n_0    |                                       |                2 |              7 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/cubic_inst/mult_inst/y_bo[7]_i_1_n_0 | main_inst/cubic_inst/mult_rst_reg_n_0 |                2 |              7 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/cubic_inst/y[6]_i_1_n_0              | LED_OBUF[13]                          |                1 |              7 |
-|  main_inst/ec/E[0]         |                                                |                                       |                3 |              8 |
-|  CLK100MHZ_IBUF_BUFG       |                                                |                                       |                4 |              8 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/cubic_inst/x                         |                                       |                3 |              8 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/ec/FSM_sequential_state_reg[1][0]    |                                       |                2 |              8 |
-|  CLK100MHZ_IBUF_BUFG       |                                                | LED_OBUF[13]                          |                3 |              9 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/cubic_inst/mult_inst/ctr[2]_i_1_n_0  | main_inst/cubic_inst/mult_rst_reg_n_0 |                4 |             10 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/sqrt_inst/y[6]_i_1__0_n_0            | LED_OBUF[13]                          |                5 |             11 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/sqrt_inst/addsub_a[7]_i_1__0_n_0     |                                       |                4 |             15 |
-|  CLK100MHZ_IBUF_BUFG       | main_inst/cubic_inst/mult_inst/E[0]            |                                       |                3 |             17 |
-+----------------------------+------------------------------------------------+---------------------------------------+------------------+----------------+
++----------------------+------------------------------------------------+---------------------------------------+------------------+----------------+
+|     Clock Signal     |                  Enable Signal                 |            Set/Reset Signal           | Slice Load Count | Bel Load Count |
++----------------------+------------------------------------------------+---------------------------------------+------------------+----------------+
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/E[0]                      | BTNR_IBUF                             |                1 |              4 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/sqrt_inst/y_bo[3]_i_1_n_0            | BTNR_IBUF                             |                1 |              4 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/FSM_onehot_state_reg_n_0_[2]         | BTNR_IBUF                             |                2 |              5 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/mult_inst/b[7]_i_1_n_0    |                                       |                2 |              7 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/mult_inst/y_bo[7]_i_1_n_0 | main_inst/cubic_inst/mult_rst_reg_n_0 |                3 |              7 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/addsub_res_saved          |                                       |                3 |              7 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/y[6]_i_1_n_0              | BTNR_IBUF                             |                2 |              7 |
+|  CLK100MHZ_IBUF_BUFG |                                                |                                       |                4 |              8 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/x                         |                                       |                4 |              8 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/sqrt_inst/x[7]_i_1__0_n_0            |                                       |                3 |              8 |
+|  CLK100MHZ_IBUF_BUFG |                                                | BTNR_IBUF                             |                4 |              9 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/mult_inst/ctr[2]_i_1_n_0  | main_inst/cubic_inst/mult_rst_reg_n_0 |                2 |             10 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/sqrt_inst/y[6]_i_1__0_n_0            | BTNR_IBUF                             |                3 |             11 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/sqrt_inst/addsub_a[7]_i_1__0_n_0     |                                       |                3 |             15 |
+|  CLK100MHZ_IBUF_BUFG | main_inst/cubic_inst/mult_inst/E[0]            |                                       |                5 |             17 |
++----------------------+------------------------------------------------+---------------------------------------+------------------+----------------+
 
 

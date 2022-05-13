@@ -70,11 +70,18 @@ module cbrt_tb;
             .addsub_a(addsub_i0[15:8]),
             .addsub_b(addsub_i0[7:0]));
             
-            
+    reg one_was_bad;        
     initial begin
-        
+        one_was_bad = 0;
+        #10
         for(regg = 0; regg < 256; regg = regg+1) begin            
             a_tb <= regg;
+            reset;
+            #10;
+            while(busy_tb != 0) begin
+                #10;     
+            end
+            
             if(regg == 0) begin exp = 0; end
             else if(regg < 8) begin exp = 1; end
             else if(regg < 27) begin exp = 2; end
@@ -83,17 +90,17 @@ module cbrt_tb;
             else if(regg < 216) begin exp = 5; end
             else if(regg < 256) begin exp = 6; end
             else begin exp = 7; end
-            reset;
-            #50;
-            while(busy_tb != 0) begin
-                #50;     
-            end
+            
             if(y == exp) begin
                 $display("good! a: %d y: %d exp: %d", a_tb, y, exp);
             end else begin
                 $display("bad! a: %d y: %d exp: %d", a_tb, y, exp);
+                one_was_bad = 1;
             end
         end
+        
+        if(one_was_bad) begin $display("not all tests are good"); end
+        else begin $display("all tests are good!!"); end
         
         $stop;
     end

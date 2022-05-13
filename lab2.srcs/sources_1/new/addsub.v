@@ -44,6 +44,7 @@ module addsub(
                     if(i2[16]) begin out = i2[15:8] + i2[7:0]; end
                     else begin out = i2[15:8] - i2[7:0]; end
                 end
+            default: begin out = 0; end
         endcase
     end
 endmodule

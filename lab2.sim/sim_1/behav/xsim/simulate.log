@@ -1,19 +1,116 @@
 Vivado Simulator 2019.1
 Time resolution is 1 ps
-good! a:   0 b:   0 y:  0 exp:  0
-good! a:   1 b:   1 y:  2 exp:  2
-good! a:   8 b:   4 y:  4 exp:  4
-good! a:  27 b:   9 y:  6 exp:  6
-good! a:  64 b:  16 y:  8 exp:  8
-good! a: 125 b:  25 y: 10 exp: 10
-good! a: 216 b:  36 y: 12 exp: 12
-good! a:   0 b:  49 y:  7 exp:  7
-good! a:   1 b:  64 y:  9 exp:  9
-good! a:   8 b:  81 y: 11 exp: 11
-good! a:  27 b: 100 y: 13 exp: 13
-good! a:  64 b: 121 y: 15 exp: 15
-good! a: 125 b: 144 y: 17 exp: 17
-good! a: 216 b: 169 y: 19 exp: 19
-good! a:   0 b: 196 y: 14 exp: 14
-good! a:   1 b: 225 y: 16 exp: 16
-$stop called at time : 8210 ns : File "C:/Users/truem/lab2/lab2.srcs/sim_1/new/mult_tb.v" Line 109
+i:          1 good! a:   0 b:   0 y:  0 exp:     0
+i:          2 good! a:   1 b:   0 y:  1 exp:     1
+i:          3 good! a:   8 b:   0 y:  2 exp:     2
+i:          4 good! a:  27 b:   0 y:  3 exp:     3
+i:          5 good! a:  64 b:   0 y:  4 exp:     4
+i:          6 good! a: 125 b:   0 y:  5 exp:     5
+i:          7 good! a: 216 b:   0 y:  6 exp:     6
+i:          8 good! a:   0 b:   1 y:  1 exp:     1
+i:          9 good! a:   1 b:   1 y:  2 exp:     2
+i:         10 good! a:   8 b:   1 y:  3 exp:     3
+i:         11 good! a:  27 b:   1 y:  4 exp:     4
+i:         12 good! a:  64 b:   1 y:  5 exp:     5
+i:         13 good! a: 125 b:   1 y:  6 exp:     6
+i:         14 good! a: 216 b:   1 y:  7 exp:     7
+i:         15 good! a:   0 b:   4 y:  2 exp:     2
+i:         16 good! a:   1 b:   4 y:  3 exp:     3
+i:         17 good! a:   8 b:   4 y:  4 exp:     4
+i:         18 good! a:  27 b:   4 y:  5 exp:     5
+i:         19 good! a:  64 b:   4 y:  6 exp:     6
+i:         20 good! a: 125 b:   4 y:  7 exp:     7
+i:         21 good! a: 216 b:   4 y:  8 exp:     8
+i:         22 good! a:   0 b:   9 y:  3 exp:     3
+i:         23 good! a:   1 b:   9 y:  4 exp:     4
+i:         24 good! a:   8 b:   9 y:  5 exp:     5
+i:         25 good! a:  27 b:   9 y:  6 exp:     6
+i:         26 good! a:  64 b:   9 y:  7 exp:     7
+i:         27 good! a: 125 b:   9 y:  8 exp:     8
+i:         28 good! a: 216 b:   9 y:  9 exp:     9
+i:         29 good! a:   0 b:  16 y:  4 exp:     4
+i:         30 good! a:   1 b:  16 y:  5 exp:     5
+i:         31 good! a:   8 b:  16 y:  6 exp:     6
+i:         32 good! a:  27 b:  16 y:  7 exp:     7
+i:         33 good! a:  64 b:  16 y:  8 exp:     8
+i:         34 good! a: 125 b:  16 y:  9 exp:     9
+i:         35 good! a: 216 b:  16 y: 10 exp:    10
+i:         36 good! a:   0 b:  25 y:  5 exp:     5
+i:         37 good! a:   1 b:  25 y:  6 exp:     6
+i:         38 good! a:   8 b:  25 y:  7 exp:     7
+i:         39 good! a:  27 b:  25 y:  8 exp:     8
+i:         40 good! a:  64 b:  25 y:  9 exp:     9
+i:         41 good! a: 125 b:  25 y: 10 exp:    10
+i:         42 good! a: 216 b:  25 y: 11 exp:    11
+i:         43 good! a:   0 b:  36 y:  6 exp:     6
+i:         44 good! a:   1 b:  36 y:  7 exp:     7
+i:         45 good! a:   8 b:  36 y:  8 exp:     8
+i:         46 good! a:  27 b:  36 y:  9 exp:     9
+i:         47 good! a:  64 b:  36 y: 10 exp:    10
+i:         48 good! a: 125 b:  36 y: 11 exp:    11
+i:         49 good! a: 216 b:  36 y: 12 exp:    12
+i:         50 good! a:   0 b:  49 y:  7 exp:     7
+i:         51 good! a:   1 b:  49 y:  8 exp:     8
+i:         52 good! a:   8 b:  49 y:  9 exp:     9
+i:         53 good! a:  27 b:  49 y: 10 exp:    10
+i:         54 good! a:  64 b:  49 y: 11 exp:    11
+i:         55 good! a: 125 b:  49 y: 12 exp:    12
+i:         56 good! a: 216 b:  49 y: 13 exp:    13
+i:         57 good! a:   0 b:  64 y:  8 exp:     8
+i:         58 good! a:   1 b:  64 y:  9 exp:     9
+i:         59 good! a:   8 b:  64 y: 10 exp:    10
+i:         60 good! a:  27 b:  64 y: 11 exp:    11
+i:         61 good! a:  64 b:  64 y: 12 exp:    12
+i:         62 good! a: 125 b:  64 y: 13 exp:    13
+i:         63 good! a: 216 b:  64 y: 14 exp:    14
+i:         64 good! a:   0 b:  81 y:  9 exp:     9
+i:         65 good! a:   1 b:  81 y: 10 exp:    10
+i:         66 good! a:   8 b:  81 y: 11 exp:    11
+i:         67 good! a:  27 b:  81 y: 12 exp:    12
+i:         68 good! a:  64 b:  81 y: 13 exp:    13
+i:         69 good! a: 125 b:  81 y: 14 exp:    14
+i:         70 good! a: 216 b:  81 y: 15 exp:    15
+i:         71 good! a:   0 b: 100 y: 10 exp:    10
+i:         72 good! a:   1 b: 100 y: 11 exp:    11
+i:         73 good! a:   8 b: 100 y: 12 exp:    12
+i:         74 good! a:  27 b: 100 y: 13 exp:    13
+i:         75 good! a:  64 b: 100 y: 14 exp:    14
+i:         76 good! a: 125 b: 100 y: 15 exp:    15
+i:         77 good! a: 216 b: 100 y: 16 exp:    16
+i:         78 good! a:   0 b: 121 y: 11 exp:    11
+i:         79 good! a:   1 b: 121 y: 12 exp:    12
+i:         80 good! a:   8 b: 121 y: 13 exp:    13
+i:         81 good! a:  27 b: 121 y: 14 exp:    14
+i:         82 good! a:  64 b: 121 y: 15 exp:    15
+i:         83 good! a: 125 b: 121 y: 16 exp:    16
+i:         84 good! a: 216 b: 121 y: 17 exp:    17
+i:         85 good! a:   0 b: 144 y: 12 exp:    12
+i:         86 good! a:   1 b: 144 y: 13 exp:    13
+i:         87 good! a:   8 b: 144 y: 14 exp:    14
+i:         88 good! a:  27 b: 144 y: 15 exp:    15
+i:         89 good! a:  64 b: 144 y: 16 exp:    16
+i:         90 good! a: 125 b: 144 y: 17 exp:    17
+i:         91 good! a: 216 b: 144 y: 18 exp:    18
+i:         92 good! a:   0 b: 169 y: 13 exp:    13
+i:         93 good! a:   1 b: 169 y: 14 exp:    14
+i:         94 good! a:   8 b: 169 y: 15 exp:    15
+i:         95 good! a:  27 b: 169 y: 16 exp:    16
+i:         96 good! a:  64 b: 169 y: 17 exp:    17
+i:         97 good! a: 125 b: 169 y: 18 exp:    18
+i:         98 good! a: 216 b: 169 y: 19 exp:    19
+i:         99 good! a:   0 b: 196 y: 14 exp:    14
+i:        100 good! a:   1 b: 196 y: 15 exp:    15
+i:        101 good! a:   8 b: 196 y: 16 exp:    16
+i:        102 good! a:  27 b: 196 y: 17 exp:    17
+i:        103 good! a:  64 b: 196 y: 18 exp:    18
+i:        104 good! a: 125 b: 196 y: 19 exp:    19
+i:        105 good! a: 216 b: 196 y: 20 exp:    20
+i:        106 good! a:   0 b: 225 y: 15 exp:    15
+i:        107 good! a:   1 b: 225 y: 16 exp:    16
+i:        108 good! a:   8 b: 225 y: 17 exp:    17
+i:        109 good! a:  27 b: 225 y: 18 exp:    18
+i:        110 good! a:  64 b: 225 y: 19 exp:    19
+i:        111 good! a: 125 b: 225 y: 20 exp:    20
+i:        112 good! a: 216 b: 225 y: 21 exp:    21
+all tests are good!!
+$stop called at time : 58090 ns : File "C:/Users/truem/lab2/lab2.srcs/sim_1/new/main_tb.v" Line 79

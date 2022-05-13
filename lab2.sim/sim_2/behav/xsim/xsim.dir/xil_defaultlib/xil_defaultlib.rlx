@@ -3,9 +3,9 @@
 May 24 2019
 15:06:07
 C:/Users/truem/lab2/lab2.sim/sim_2/behav/xsim/glbl.v,1558713910,verilog,,,,glbl,,,,,,,,
-C:/Users/truem/lab2/lab2.srcs/sim_2/new/cbrt_tb.v,1651492434,verilog,,,,cbrt_tb,,,,,,,,
-C:/Users/truem/lab2/lab2.srcs/sources_1/new/addsub.v,1650286788,verilog,,C:/Users/truem/lab2/lab2.srcs/sources_1/new/cubic.v,,addsub,,,,,,,,
-C:/Users/truem/lab2/lab2.srcs/sources_1/new/cubic.v,1650282418,verilog,,C:/Users/truem/lab2/lab2.srcs/sources_1/new/mult.v,,cubic,,,,,,,,
+C:/Users/truem/lab2/lab2.srcs/sim_2/new/cbrt_tb.v,1652440505,verilog,,,,cbrt_tb,,,,,,,,
+C:/Users/truem/lab2/lab2.srcs/sources_1/new/addsub.v,1651691073,verilog,,C:/Users/truem/lab2/lab2.srcs/sources_1/new/cubic.v,,addsub,,,,,,,,
+C:/Users/truem/lab2/lab2.srcs/sources_1/new/cubic.v,1651583068,verilog,,C:/Users/truem/lab2/lab2.srcs/sources_1/new/mult.v,,cubic,,,,,,,,
 C:/Users/truem/lab2/lab2.srcs/sources_1/new/main.v,1649181135,verilog,,,,main,,,,,,,,
-C:/Users/truem/lab2/lab2.srcs/sources_1/new/mult.v,1649831568,verilog,,C:/Users/truem/lab2/lab2.srcs/sim_2/new/cbrt_tb.v,,mult,,,,,,,,
+C:/Users/truem/lab2/lab2.srcs/sources_1/new/mult.v,1651529769,verilog,,C:/Users/truem/lab2/lab2.srcs/sim_2/new/cbrt_tb.v,,mult,,,,,,,,
 C:/Users/truem/lab2/lab2.srcs/sources_1/new/sqrt.v,1649181160,verilog,,C:/Users/truem/lab2/lab2.srcs/sources_1/new/main.v,,sqrt,,,,,,,,

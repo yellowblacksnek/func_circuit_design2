@@ -33,14 +33,14 @@ module cubic(
     output addsub_req,
     output reg addsub_mode,
     output reg [7:0] addsub_a,
-    output reg [7:0] addsub_b,
+    output reg [7:0] addsub_b
     
     /*test outs*/
-    output [7:0] b_out,
-    output [7:0] x_out,
-    output [2:0] m_out,
-    output [15:0] mult_out,
-    output mult_rst_out, mult_start_out, mult_busy_out, mult_done_out
+//    output [7:0] b_out,
+//    output [7:0] x_out,
+//    output [2:0] m_out,
+//    output [15:0] mult_out,
+//    output mult_rst_out, mult_start_out, mult_busy_out, mult_done_out
     );
     
     localparam IDLE = 3'b000;
@@ -74,7 +74,7 @@ module cubic(
 //    assign end_step = ( m == 0  && mult_done == 1) ;
 //    assign busy_o = (state != 1'b0);
     assign busy_o = (state != IDLE);
-    assign addsub_req = (state == WAIT_SUB || state == WAIT_ADD);
+    assign addsub_req = (state == WAIT_SUB || (state == WAIT_ADD));
     
     assign y2 = y << 1;
     
@@ -88,7 +88,8 @@ module cubic(
         .y_bo(mult_y));  
         
 //    assign b = ((((mult_res << 1) + mult_res)|inc_mask) << m);
-    assign b = (((addsub_res)|inc_mask) << m);
+    reg [7:0] addsub_res_saved;
+    assign b = (((addsub_res_saved)|inc_mask) << m);
     
     /*test outs*/
     assign b_out = b;
@@ -165,11 +166,13 @@ module cubic(
                     end
                 WAIT_SUB:
                     if(addsub_ready == 1) begin
+                        addsub_res_saved <= addsub_res;
                         x <= addsub_res;
                         state <= WORK;
                     end
                 WAIT_ADD:
                     if(addsub_ready == 1) begin
+                        addsub_res_saved <= addsub_res;
                         mult_done <= 1;
                         state <= WORK;
                     end

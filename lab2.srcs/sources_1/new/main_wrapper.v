@@ -25,13 +25,13 @@ module main_wrapper(
         input wire [15:0] SW,
         input wire BTNR,
         input wire BTNC,
-        output wire [15:0] LED
+        output wire [5:0] LED
     );
         
-    assign LED[14] = 1;
-    assign LED[13] = BTNR;
-    assign LED[12] = BTNC;
-        
+//    assign LED[8] = 1;
+//    assign LED[7] = BTNR;
+//    assign LED[6] = BTNC;
+
     main main_inst(
         .clk_i(CLK100MHZ),
         .rst_i(BTNR),
@@ -39,6 +39,6 @@ module main_wrapper(
         .a_bi(SW[7:0]),
         .b_bi(SW[15:8]),
         
-        .busy_o(LED[15]),
+        .busy_o(LED[5]),
         .y_bo(LED[4:0]));
 endmodule

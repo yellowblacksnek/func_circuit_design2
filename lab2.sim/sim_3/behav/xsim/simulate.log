@@ -256,4 +256,5 @@ good! a: 252 y: 15 exp: 15
 good! a: 253 y: 15 exp: 15
 good! a: 254 y: 15 exp: 15
 good! a: 255 y: 15 exp: 15
-$stop called at time : 28110 ns : File "C:/Users/truem/lab2/lab2.srcs/sim_3/new/sqrt_tb.v" Line 107
+all tests are good!!
+$stop called at time : 24250 ns : File "C:/Users/truem/lab2/lab2.srcs/sim_3/new/sqrt_tb.v" Line 114

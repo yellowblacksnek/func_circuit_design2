@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Wed Apr 20 11:11:31 2022
-# Process ID: 6056
+# Start of session at: Fri May  6 14:29:26 2022
+# Process ID: 7692
 # Current directory: C:/Users/truem/lab2/lab2.runs/impl_1
 # Command line: vivado.exe -log main_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source main_wrapper.tcl -notrace
 # Log file: C:/Users/truem/lab2/lab2.runs/impl_1/main_wrapper.vdi

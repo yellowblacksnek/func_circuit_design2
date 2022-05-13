@@ -256,4 +256,5 @@ good! a: 252 y: 6 exp: 6
 good! a: 253 y: 6 exp: 6
 good! a: 254 y: 6 exp: 6
 good! a: 255 y: 6 exp: 6
-$stop called at time : 130110 ns : File "C:/Users/truem/lab2/lab2.srcs/sim_2/new/cbrt_tb.v" Line 98
+all tests are good!!
+$stop called at time : 125770 ns : File "C:/Users/truem/lab2/lab2.srcs/sim_2/new/cbrt_tb.v" Line 105

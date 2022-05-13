@@ -34,9 +34,10 @@ module ec4_2(
 //    assign out[1] = d[2] | d[3];
     
     always @* begin
-        if(d[0]==1) begin out = 2'b00; end
-        else if(d[1]==1) begin out = 2'b01; end
-        else if(d[2]==1) begin out = 2'b10; end
-        else if(d[3]==1) begin out = 2'b11; end
+        if(d[0]==1) begin out <= 2'b00; end
+        else if(d[1]==1) begin out <= 2'b01; end
+        else if(d[2]==1) begin out <= 2'b10; end
+        else if(d[3]==1) begin out <= 2'b11; end
+        else begin out <= 2'b00; end
     end
 endmodule
